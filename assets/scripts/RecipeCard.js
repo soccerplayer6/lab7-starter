@@ -130,9 +130,32 @@ class RecipeCard extends HTMLElement {
 		// 			 Do NOT include the <article> tags within the innerHTML of the element you create.
 		//           Remember to replace all the placeholders in the template with the data passed in.
 		//           i.e. imgSrc, titleLnk, etc
-		
+		const imgElement = articleElement.querySelector('img:not([class])');
+		imgElement.src = data.imgSrc;
+		imgElement.alt = data.imgAlt;
+
+		const linkElement = articleElement.querySelector('p.title a');
+		linkElement.href = data.titleLnk;
+		linkElement.textContent = data.titleTxt;
+
+		const organizationElement = articleElement.querySelector('p.organization');
+		organizationElement.textContent = data.organization;
+
+		const ratingElement = articleElement.querySelector('div.rating');
+		const spanElements = ratingElement.querySelectorAll('span');
+		const firstSpan = spanElements[0];
+		const secondSpan = spanElements[1];
+		firstSpan.textContent = data.rating;
+		secondSpan.textContent = data.numRatings;
+
+		const timeElement = articleElement.querySelector('time');
+		timeElement.textContent = data.lengthTime;
+
+		const ingredientsElement = articleElement.querySelector('p.ingredients');
+		ingredientsElement.textContent = data.ingredients;
 	}
 }
 
 // A8. TODO - Define the Class as a customElement so that you can create
 //           'recipe-card' elements
+	customElements.define('recipe-card',RecipeCard);
