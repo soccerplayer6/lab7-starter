@@ -130,9 +130,35 @@ class RecipeCard extends HTMLElement {
 		// 			 Do NOT include the <article> tags within the innerHTML of the element you create.
 		//           Remember to replace all the placeholders in the template with the data passed in.
 		//           i.e. imgSrc, titleLnk, etc
-		const imgElement = articleElement.querySelector('img:not([class])');
-		imgElement.src = data.imgSrc;
-		imgElement.alt = data.imgAlt;
+		articleElement.innerHTML = `<img src="https://link-to-article.com/recipe-thumbnail.jpg"
+		alt="Recipe Title">
+	  <p class="title">
+		<a href="https://link-to-article.com">Title</a>
+	  </p>
+	  <p class="organization">The Chef's Organization</p>
+	  <div class="rating">
+		<span>5</span>
+		<img src="/assets/images/icons/5-star.svg" alt="5 stars">
+		<span>(500)</span>
+	  </div>
+	  <time>50 min</time>
+	  <p class="ingredients">
+		Comma, Separated, List, of, Ingredients
+	  </p>
+	  `;
+		console.log(articleElement);
+		if (!articleElement) {
+			console.error('No article element found.');
+		}
+		const imgElements = articleElement.querySelectorAll('img');
+		if (imgElements.length > 0) {
+			const imgElement = imgElements[0];
+			imgElement.src = data.imgSrc;
+			imgElement.alt = data.imgAlt;
+		} else {
+			console.error('No img elements found in the article element.');
+		}
+		
 
 		const linkElement = articleElement.querySelector('p.title a');
 		linkElement.href = data.titleLnk;
