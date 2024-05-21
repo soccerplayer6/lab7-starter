@@ -73,6 +73,7 @@ function initFormHandler() {
 	// B3. TODO - Add an event listener for the 'submit' event, which fires when the
 	//            submit button is clicked
 	formElement.addEventListener('submit',(event) => {
+		event.preventDefault();
 		// B4. TODO - Create a new FormData object from the <form> element reference above
 		const formData = new FormData(formElement);
 		// B5. TODO - Create an empty object (we'll refer to this object as recipeObject to
@@ -92,7 +93,7 @@ function initFormHandler() {
 	// B9. TODO - Get the recipes array from localStorage, add this new recipe to it, and
 	//            then save the recipes array back to localStorage
 	const recipes = getRecipesFromStorage();
-	recipes.push(recipe);
+	recipes.push(recipeObject);
 
     // Save the updated recipes array back to localStorage
     localStorage.setItem('recipes', JSON.stringify(recipes));
